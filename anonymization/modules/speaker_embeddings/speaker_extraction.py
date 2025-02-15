@@ -101,7 +101,7 @@ class SpeakerExtraction:
 
     def extract_speakers(self, dataset_path, dataset_name=None, emb_level=None):
         dataset_name = dataset_name if dataset_name is not None else dataset_path.name
-        dataset_results_dir = self.results_dir / dataset_name if self.save_intermediate else Path('')
+        dataset_results_dir = Path(self.results_dir) / dataset_name if self.save_intermediate else Path()
         emb_level = emb_level if emb_level is not None else self.emb_level
         utt2spk = read_kaldi_format(dataset_path / 'utt2spk')
 

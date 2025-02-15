@@ -45,7 +45,7 @@ class ProsodyExtraction:
 
     def extract_prosody(self, dataset_path: Path, texts, dataset_name=None):
         dataset_name = dataset_name if dataset_name else dataset_path.name
-        dataset_results_dir = self.results_dir / dataset_name if self.save_intermediate else Path('')
+        dataset_results_dir = Path(self.results_dir) / dataset_name if self.save_intermediate else Path()
         wav_scp = read_kaldi_format(dataset_path / 'wav.scp')
 
         data_prosody = Prosody()

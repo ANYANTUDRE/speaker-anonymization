@@ -84,7 +84,7 @@ class SpeechRecognition:
 
     def recognize_speech(self, dataset_path, dataset_name=None, utterance_list=None):
         dataset_name = dataset_name if dataset_name else dataset_path.name
-        dataset_results_dir = self.results_dir / dataset_name if self.save_intermediate else Path('')
+        dataset_results_dir = Path(self.results_dir) / dataset_name if self.save_intermediate else Path
 
         if self.asr_models is None:
             return self._load_gold_transcripts(dataset_path)

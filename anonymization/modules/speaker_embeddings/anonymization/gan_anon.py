@@ -66,7 +66,7 @@ class GANAnonymizer(BaseAnonymizer):
             logger.info(f'Gan vectors: {self.gan_vectors.shape}')
             if self.unused_indices_file.is_file():
                 self.unused_indices = torch.load(
-                    self.unused_indices_file, map_location="cpu"
+                    self.unused_indices_file, map_location="cpu", weights_only=False
                 )
                 logger.info(f'Unused indices: {self.unused_indices.shape}')
             else:

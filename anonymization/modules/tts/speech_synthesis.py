@@ -7,6 +7,8 @@ from itertools import repeat
 from .ims_tts import ImsTTS
 from utils import create_clean_dir, setup_logger
 
+from pathlib import Path
+
 set_start_method('spawn', force=True)
 logger = setup_logger(__name__)
 
@@ -45,7 +47,7 @@ class SpeechSynthesis:
     def synthesize_speech(self, dataset_name, texts, speaker_embeddings, prosody=None, emb_level='spk'):
         # depending on whether we save the generated audios to disk or not, we either return a dict of paths to the
         # saved wavs (wav.scp) or the wavs themselves
-        dataset_results_dir = self.results_dir / dataset_name if self.save_output else ''
+        dataset_results_dir = Path(self.results_dir) / dataset_name if self.save_output else ''
         wavs = {}
 
         if dataset_results_dir.exists() and not self.force_compute:

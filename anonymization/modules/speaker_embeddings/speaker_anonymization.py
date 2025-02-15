@@ -3,6 +3,7 @@ from .anonymization.pool_anon import PoolAnonymizer
 from .anonymization.gan_anon import GANAnonymizer
 from .speaker_embeddings import SpeakerEmbeddings
 from utils import setup_logger
+from pathlib import Path
 
 logger = setup_logger(__name__)
 
@@ -34,7 +35,7 @@ class SpeakerAnonymization:
         return self.anonymizer.suffix
 
     def anonymize_embeddings(self, speaker_embeddings, dataset_name):
-        dataset_results_dir = self.results_dir / dataset_name / 'spk-level' if self.save_intermediate else ''
+        dataset_results_dir = Path(self.results_dir) / dataset_name / 'spk-level' if self.save_intermediate else ''
 
         if dataset_results_dir.exists() and any(dataset_results_dir.iterdir()) and not speaker_embeddings.new and not\
                 self.force_compute:
